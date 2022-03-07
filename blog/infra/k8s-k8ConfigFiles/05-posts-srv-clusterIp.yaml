@@ -1,0 +1,14 @@
+#You can write this service inside depl also, no need to make another file
+apiVersion: v1
+kind: Service
+metadata:
+  name: posts-clusterip-srv
+spec:
+  selector:
+    app: posts
+  type: ClusterIP #Its default
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

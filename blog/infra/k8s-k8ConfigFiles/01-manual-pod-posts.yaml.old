@@ -1,0 +1,9 @@
+#kubectl apply -f <file-name>
+apiVersion: v1
+kind: Pod #Create a pod
+metadata:
+  name: posts #Pod Name
+spec: #Specification - List of configuration applied to the the pod
+  containers: #Specify containers inside pods with name and image
+    - name: posts #'-' Array entity, Make a container with name as 'posts'
+      image: utkarsh43/posts:0.0.1

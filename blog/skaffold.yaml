@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl: #Collection of yaml files in the path and watch changes in the files
+    manifests:
+      - ./infra/k8s-k8ConfigFiles/* #skaffold will apply these files on startup and delete on close
+build:
+  local:
+    push: false #Will not push the image to docker hub when build commits by skaffold
+  artifacts: #it tells skaffold about aomethings that skaffold needs to maintain in our project
+    - image: utkarsh43/client #skaffold will either build the new image if the chnage is not related to manual rule written below
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: #Skaffold will either manually update the file in the pod if any change is made in the js file
+          - src: 'src/**/*.js'
+            dest: . #Take the file and throw it in the container to the corresponding path
+    - image: utkarsh43/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: utkarsh43/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: utkarsh43/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: utkarsh43/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: utkarsh43/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
