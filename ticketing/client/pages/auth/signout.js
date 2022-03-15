@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 const SignOut = () => {
   const { doRequest } = useRequest({
-    url: '/api/users/signout',
+    url: 'http://ingress-nginx.ingress-nginx-controller.svc.cluster.local/api/users/signout',
     method: 'post',
     body: {},
     onSuccess: () => Router.push('/'),

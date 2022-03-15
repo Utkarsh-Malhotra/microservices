@@ -24,3 +24,11 @@ build:
         manual: #Skaffold will either manually update the file in the pod if any change is made in the js file
           - src: '**/*.js'
             dest: .
+    - image: utkarsh43/tickets 
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual: 
+          - src: 'src/**/*.ts'
+            dest: . 

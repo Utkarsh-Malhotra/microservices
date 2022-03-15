@@ -5,7 +5,7 @@ const signUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: '/api/users/signup',
+    url: 'http://ingress-nginx.ingress-nginx-controller.svc.cluster.local/api/users/signup',
     method: 'post',
     body: {
       email,

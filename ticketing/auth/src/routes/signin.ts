@@ -1,15 +1,14 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest } from '../middlewares/validate-request';
+import { validateRequest,BadRequestErrors } from '@utktickets/common';
 import { User } from '../models/user';
-import { BadRequestErrors } from '../errors/bad-request-error';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
 router.post(
-  '/api/user/signin',
+  '/api/users/signin',
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password')

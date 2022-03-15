@@ -9,7 +9,7 @@ interface UserAttr {
 }
 
 // An interface that descibes the properties
-// that a User model has
+// that a User Model has
 interface UserModel extends mongoose.Model<UserDoc> {
   build(attr: UserAttr): UserDoc;
 }
