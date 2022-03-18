@@ -27,7 +27,7 @@ spec:
             '-hbf', #how many times each client fails before nats assume them to be dead
             '2',
             '-SD',
-            '-cid',
+            '-cid', #clusterId
             'ticketing'
           ] #primary commands to be executed, see docs nats-streaming at docker hub
 ---
