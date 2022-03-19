@@ -1,6 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/tickets'
+import { natsWrapper } from '../../nats-wrapper';
 
 it('has a route handler to /api/tickets for posts request', async () => {
     const response = await request(app)
@@ -82,4 +83,19 @@ it('creates a tickets with valid inputs', async () => {
     expect(tickets[0].title).toEqual(title);
 });
 
+it('publishes an event', async () => {
+    const title = 'asdasd'
+    
+    await request(app)
+        .post('/api/tickets')
+        .set('Cookie',global.signin())
+        .send({
+            title,
+            price: 20
+        })
+        .expect(201)
 
+    console.log(natsWrapper); //importing natsWrapper from a real file but jest will redirect it to fake natswrapper in __mocks__
+   
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+})
