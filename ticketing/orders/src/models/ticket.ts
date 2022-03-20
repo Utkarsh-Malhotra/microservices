@@ -42,6 +42,18 @@ const ticketSchema = new mongoose.Schema({
 
 ticketSchema.set('versionKey','version');
 ticketSchema.plugin(updateIfCurrentPlugin);
+
+// we are doing this because we can customise our version no to check for any difference and not only 1
+// change 1 to 100 if differece is 100
+// now we dont need the updateIfCurrentPlugin plugin
+// ticketSchema.pre('save', function (done) {  // middleware that will run before saving a record
+//     // find the document with version 1 less
+//     this.$where = {
+//         version: this.get('version') - 1
+//     };
+//     done();
+// })
+
 ticketSchema.statics.findByEvent = (event: {id: string, version: number}) => {
     
     return Ticket.findOne({
