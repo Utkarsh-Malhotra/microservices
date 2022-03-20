@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Order,OrderStatus } from './orders'
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current'
 // No need to create this in common library since 
 // order collection needs to know about only few data 
 interface TicketAttrs {
@@ -36,6 +37,9 @@ const ticketSchema = new mongoose.Schema({
         }
     }
 });
+
+ticketSchema.set('versionKey','version');
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
     return new Ticket({
