@@ -1,4 +1,4 @@
-import nats, { Stan,Message } from 'node-nats-streaming';
+import { Message } from 'node-nats-streaming';
 import { Subjects,Listner, TicketCreatedEvent } from '@utktickets/common';
 import { Ticket } from '../../models/ticket';
 import { queueGroupName } from './queue-group-name';
