@@ -12,6 +12,7 @@ interface OrderAttrs {
 
 interface OrderDoc extends mongoose.Document { // extending mongoose because these attributes may be more as mongoose adds more parameters while saving 
     userId: string;
+    version: number;
     status: OrderStatus;
     expiresAt: Date;
     ticket: TicketDoc;

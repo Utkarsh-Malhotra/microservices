@@ -14,7 +14,6 @@ export class TicketCreatedListner extends Listner<TicketCreatedEvent> {
         })
 
         await ticket.save();
-
         msg.ack();
     }
 }
