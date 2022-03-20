@@ -48,3 +48,4 @@ it('acks the message', async () => {
     // write assertions to make sure ack function is called
     expect(msg.ack).toHaveBeenCalled();
 })
+
