@@ -8,7 +8,7 @@ import { OrderCreatedPublisher } from '../events/publishers/order-created-publis
 import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
-const EXPIRATION_WINDOW_SECONDS = 15 * 60; // Extract this string from env/database etc
+const EXPIRATION_WINDOW_SECONDS = 1 * 60; // Extract this string from env/database etc
 
 router.post('/api/orders',requireAuth,[
     body('ticketId')
