@@ -9,7 +9,7 @@ jest.mock('../nats-wrapper');
 let mongod: any;
 
 declare global {
-  var signin: () => string[];
+  var signin: (id?: string) => string[];
 }
 
 beforeAll(async () => {
@@ -32,10 +32,10 @@ afterAll(async () => {
   await mongod.stop();
 });
 
-global.signin =  () => {
+global.signin =  (id?: string) => {
   // Build a JWT payload. { id,email }
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: id || new mongoose.Types.ObjectId().toHexString(),
     email: "test.test.com"
   }
   
