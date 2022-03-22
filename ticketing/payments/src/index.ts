@@ -36,7 +36,7 @@ const start = async () => {
   }
 
   app.listen(3000, () => {
-    console.log('Tickets Service on 3000!!');
+    console.log('Payments Service on 3000!!');
   });
 };
 
