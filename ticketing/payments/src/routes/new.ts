@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { stripe } from '../stripe';
+import { Payment } from '../models/payment';
 
 import {
     requireAuth,
@@ -40,11 +41,18 @@ router.post('/api/payments', requireAuth , [
 
 
 
-    await stripe.charges.create({
+    const charge = await stripe.charges.create({
         currency: 'inr',
         amount: order.price * 100,
         source: token
     })
+
+    const payment = Payment.build({
+        orderId,
+        stripeId: charge.id
+    })
+
+    await payment.save();
 
     res.status(201).send({ success: true })
 })

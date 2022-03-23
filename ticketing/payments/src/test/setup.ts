@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 
 jest.mock('../nats-wrapper');
 
+process.env.STRIPE_KEY = 'sk_test_51Kg1PRSHW3oFTPPVWrKHcYT1Bm3onrUAKiYfsNlC1EzjgSjfXBhW6cCGNasoliaV6HiXfBgI9ny4vpnRkkFi3JSw007engA491'
+
 let mongod: any;
 
 declare global {
