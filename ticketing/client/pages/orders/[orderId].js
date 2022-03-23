@@ -1,9 +1,18 @@
 import { useEffect,useState } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
+import useRequest from '../../hooks/use-request';
+import Router from 'next/router';
 
 const OrderShow = ({ order, currentUser }) => {
     const [timeLeft, setTimeLeft] = useState(0);
-
+    const { doRequest,errors } = useRequest({
+        url: '/api/payments',
+        method: 'post',
+        body: {
+            orderId: order.id
+        },
+        onSuccess: (payment) => Router.push('/orders')
+    })
     useEffect(() => {
         const findTimeLeft = () => {
             const msLeft = new Date(order.expiresAt) - new Date();
@@ -23,11 +32,12 @@ const OrderShow = ({ order, currentUser }) => {
     return <div>
         Time Left to pay: {timeLeft} seconds
         <StripeCheckout 
-            token={(token) => console.log(token)}
+            token={({ id }) => doRequest({ token: id })}
             stripeKey='pk_test_51Kg1PRSHW3oFTPPVpXqsqvlf3zjsvad0eTpRFUwKiuvYqBgIGi3w2oCxEbW7C8rOemmyzkRtqMrlO1fdZjIeHoto00Pjw63oT8'  // can keep in env variable , need to look next doc for env variables
             amount={order.ticket.price * 100}
             email={currentUser.email}
         />
+        {errors}
     </div>
 }
 
