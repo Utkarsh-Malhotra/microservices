@@ -13,3 +13,11 @@ db.COLEECTION_NAME
 RUN mongo commands now like the following
 db.tickets.find({ price: 600 })
 
+
+
+Github Action
+Run github action any time we push a code, create a pull request or update a pull request
+
+add this command in package.json
+"test:ci": "jest"   
+ It will run test one time only in github
