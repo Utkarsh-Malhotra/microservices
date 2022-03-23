@@ -1,19 +1,18 @@
 import { useEffect } from 'react';
-import useRequest from '../../hooks/use-request';
 import Router from 'next/router';
+import useRequest from '../../hooks/use-request';
 
-const SignOut = () => {
+export default () => {
   const { doRequest } = useRequest({
-    url: 'http://ingress-nginx.ingress-nginx-controller.svc.cluster.local/api/users/signout',
+    url: '/api/users/signout',
     method: 'post',
     body: {},
-    onSuccess: () => Router.push('/'),
+    onSuccess: () => Router.push('/')
   });
 
   useEffect(() => {
     doRequest();
   }, []);
-  return <div>Signing you out ......</div>;
-};
 
-export default SignOut;
+  return <div>Signing you out...</div>;
+};

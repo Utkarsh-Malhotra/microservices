@@ -1,24 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
-
-export default () => {
+const signUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: '/api/users/signup',
+    url: 'http://ingress-nginx.ingress-nginx-controller.svc.cluster.local/api/users/signup',
     method: 'post',
     body: {
       email,
-      password
+      password,
     },
-    onSuccess: () => Router.push('/')
+    onSuccess: () => Router.push('/'),
   });
-
-  const onSubmit = async event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-
-    await doRequest();
+    console.log(email, password);
+    doRequest();
   };
 
   return (
@@ -28,7 +26,7 @@ export default () => {
         <label>Email Address</label>
         <input
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           className="form-control"
         />
       </div>
@@ -36,9 +34,9 @@ export default () => {
         <label>Password</label>
         <input
           value={password}
-          onChange={e => setPassword(e.target.value)}
-          type="password"
+          onChange={(e) => setPassword(e.target.value)}
           className="form-control"
+          type="password"
         />
       </div>
       {errors}
@@ -46,3 +44,5 @@ export default () => {
     </form>
   );
 };
+
+export default signUp;
