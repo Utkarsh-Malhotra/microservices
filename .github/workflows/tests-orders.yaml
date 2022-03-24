@@ -1,11 +1,11 @@
 name: tests-orders
 
-on: 
-  pull_request
+on:
+  pull_request:
     paths:
-      - 'ticketing/orders/**'    #It means run the below job only when certaing change is made in orders service.
-  
-jobs: 
+      - 'ticketing/orders/**' #It means run the below job only when certaing change is made in orders service.
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:

@@ -1,11 +1,11 @@
 name: tests-auth
 
-on: 
-  pull_request
+on:
+  pull_request:
     paths:
-      - 'ticketing/auth/**'    #It means run the below job only when certaing change is made in auth service.
-  
-jobs: 
+      - 'ticketing/auth/**'   #It means run the below job only when certaing change is made in auth service.
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:

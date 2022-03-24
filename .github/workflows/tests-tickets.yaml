@@ -1,11 +1,11 @@
 name: tests-tickets
 
-on: 
-  pull_request
+on:
+  pull_request:
     paths:
-      - 'ticketing/tickets/**'    #It means run the below job only when certaing change is made in tickets service.
-  
-jobs: 
+      - 'ticketing/tickets/**'   #It means run the below job only when certaing change is made in tickets service.
+
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
