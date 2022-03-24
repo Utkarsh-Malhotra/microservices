@@ -4,6 +4,7 @@ deploy:
   kubectl: #Collection of yaml files in the path and watch changes in the files
     manifests:
       - ./infra/k8s/* #skaffold will apply these files on startup and delete on close
+      - ./infra/k8s-dev/*
 build:
   local:
     push: false #Will not push the image to docker hub when build commits by skaffold
