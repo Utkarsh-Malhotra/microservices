@@ -3,7 +3,7 @@ name: tests-payments
 on:
   pull_request:
     paths:
-      - '*/payments/**'  #It means run the below job only when certaing change is made in payments service.
+      - 'microservices/ticketing/payments/**'  #It means run the below job only when certaing change is made in payments service.
 
 jobs:
   build:
