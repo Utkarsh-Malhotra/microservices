@@ -3,7 +3,7 @@ name: tests-tickets
 on: 
   pull_request
     paths:
-      - 'tickets/**'    #It means run the below job only when certaing change is made in tickets service.
+      - 'ticketing/tickets/**'    #It means run the below job only when certaing change is made in tickets service.
   
 jobs: 
   build:
